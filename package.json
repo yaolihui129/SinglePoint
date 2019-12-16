@@ -1,0 +1,30 @@
+{
+  "name": "SinglePoint",
+  "version": "1.0.0",
+  "description": "单点效率的客户端工具",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon --watch main.js --exec 'electron .'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yaolihui129/SinglePoint.git"
+  },
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "Yaolh",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^7.1.1",
+    "nodemon": "^2.0.2"
+  },
+  "bugs": {
+    "url": "https://github.com/yaolihui129/SinglePoint/issues"
+  },
+  "homepage": "https://github.com/yaolihui129/SinglePoint#readme"
+}
