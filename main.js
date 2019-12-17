@@ -3,15 +3,15 @@ const {app, BrowserWindow,ipcMain} = require('electron')
 
 app.on('ready', ()=>{
 	mainWindow = new BrowserWindow({
-	  width: 600,
-	  height: 400,
+	  width: 800,
+	  height: 800,
 	  webPreferences: {
 	    nodeIntegration:true
 	  }
 	})
 	
-	mainWindow.loadFile('index.html')
-	//111
+	mainWindow.loadFile('./renderer/index.html')
+
 	ipcMain.on('message',(event,arg)=>{
 		  console.log(arg)
 		  // event.sender.send('reply','hello from main')
