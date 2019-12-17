@@ -20,7 +20,6 @@
   "author": "Yaolh",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^7.1.1",
     "nodemon": "^2.0.2"
   },
   "bugs": {
