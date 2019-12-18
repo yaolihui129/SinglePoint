@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow,ipcMain} = require('electron')
+const {app, BrowserWindow,ipcMain,dialog} = require('electron')
 
 class AppWindow extends BrowserWindow{
 	constructor(config,fileLocation){
@@ -30,6 +30,16 @@ app.on('ready', ()=>{
 			parent:mainWindow
 		  },'./renderer/add.html') 
 	})
+	ipcMain.on('open-music-file',()=>{
+		console.log('open from randerer')
+		dialog.showOpenDialog({
+			proerties:['openFile','mltiSelections'],
+			filters:[{ name:'Music',extensions:['mp3'] }]
+		},(files)=>{
+			console.log(files)
+		})
+	})
+	
 })
 
  
