@@ -4,7 +4,7 @@ const {app, BrowserWindow,ipcMain} = require('electron')
 app.on('ready', ()=>{
 	mainWindow = new BrowserWindow({
 	  width: 800,
-	  height: 800,
+	  height: 600,
 	  webPreferences: {
 	    nodeIntegration:true
 	  }
@@ -12,10 +12,18 @@ app.on('ready', ()=>{
 	
 	mainWindow.loadFile('./renderer/index.html')
 
-	ipcMain.on('message',(event,arg)=>{
-		  console.log(arg)
-		  // event.sender.send('reply','hello from main')
-		  mainWindow.send('reply','hello from main')
+	ipcMain.on('add-music-window',()=>{
+		  console.log('hello from index page')
+		  addWindow = new BrowserWindow({
+		    width: 500,
+		    height: 400,
+		    webPreferences: {
+		      nodeIntegration:true
+		    },
+			parent:mainWindow
+		  })
+		  addWindow.loadFile('./renderer/add.html')
+		 
 	})
 	
 })
