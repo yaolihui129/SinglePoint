@@ -30,13 +30,16 @@ app.on('ready', ()=>{
 			parent:mainWindow
 		  },'./renderer/add.html') 
 	})
-	ipcMain.on('open-music-file',()=>{
+	ipcMain.on('open-music-file',(event)=>{
 		console.log('open from randerer')
 		dialog.showOpenDialog({
 			proerties:['openFile','mltiSelections'],
 			filters:[{ name:'Music',extensions:['mp3'] }]
 		},(files)=>{
 			console.log(files)
+			if (files){
+				event.sender.send('selected-file',files)
+			}
 		})
 	})
 	
