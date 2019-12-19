@@ -1,5 +1,7 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow,ipcMain,dialog} = require('electron')
+const { app, BrowserWindow, ipcMain, dialog } = require('electron')
+
+
 const Store = require('electron-store')
 const store = new Store()
 console.log(app.getPath('userData'))
@@ -30,7 +32,8 @@ class AppWindow extends BrowserWindow{
 }
 
 app.on('ready', ()=>{
-	mainWindow = new AppWindow({},'./renderer/index.html')
+    const mainWindow = new AppWindow({},'./renderer/index.html')
+	
 	ipcMain.on('add-music-window',()=>{
 		  console.log('hello from index page')
 		  addWindow = new AppWindow({
@@ -39,18 +42,17 @@ app.on('ready', ()=>{
 			parent:mainWindow
 		  },'./renderer/add.html') 
 	})
-	ipcMain.on('open-music-file',(event)=>{
-		console.log('open from randerer')
-		dialog.showOpenDialog({
-			properties:['openFile','mltiSelections'],
-			filters:[{ name:'Music',extensions:['mp3'] }]
-		},(files)=>{
+	ipcMain.on('open-music-file', (event) => {
+	    dialog.showOpenDialog({
+	      properties: ['openFile', 'multiSelections'],
+	      filters: [{ name: 'Music', extensions: ['mp3'] }]
+	    }, (files) => {
 			console.log(files)
-			if (files){
-				event.sender.send('selected-file',files)
-			}
-		})
-	})
+	      if (files) {
+	        event.sender.send('selected-file', files)
+	      }
+	    })
+	  })
 	
 })
 
